@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="sell_order_receivable">
+        <field name="name">sell.order.form.inherit</field>
+        <field name="model">sell.order</field>
+        <field name="inherit_id" ref="sell.sell_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="receivable"/>
+            </field>
+        </field>
+    </record>
+</odoo>
+

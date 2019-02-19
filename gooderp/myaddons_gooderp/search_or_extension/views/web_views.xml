@@ -1,0 +1,12 @@
+<odoo>
+  <data>
+  		
+        <template id="search_or_extension" name="search_or_extension assets" inherit_id="web.assets_backend">
+		        <xpath expr="." position="inside">
+		            <script type="text/javascript" src="/search_or_extension/static/src/js/search_or_extension.js"></script>	
+		        </xpath>
+   		</template>
+
+
+  </data>
+</odoo>

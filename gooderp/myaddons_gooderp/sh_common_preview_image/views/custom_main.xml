@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+<data>
+    <!-- this can make the dialog moving by mouse drag -->
+    <template id="common_fix_2" inherit_id="web.assets_backend" name="Sharehonor Common Fix">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/sh_common_preview_image/static/src/js/main.js"></script>
+        </xpath>
+    </template>
+</data>
+</openerp>

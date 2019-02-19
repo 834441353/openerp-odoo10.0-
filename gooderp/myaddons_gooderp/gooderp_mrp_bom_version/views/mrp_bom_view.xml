@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="wh_bom_version_tree_view">
+            <field name="name">wh.bom.version.tree</field>
+            <field name="model">wh.bom</field>
+            <field name="inherit_id" ref="warehouse.wh_bom_tree"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="active" />
+                    <field name="version" />
+                    <field name="state" />
+                    <field name="historical_date"/>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="wh_bom_version_form_view">
+            <field name="name">wh.bom.version.form</field>
+            <field name="model">wh.bom</field>
+            <field name="inherit_id" ref="warehouse.wh_bom_form"/>
+            <field name="arch" type="xml">
+                <sheet position="before">
+                    <header>
+                        <button name="button_draft" type="object" string="草稿"
+                                groups="wh_bom_version.group_wh_bom_version"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight" />
+                        <button name="button_activate" type="object" string="激活"
+                                attrs="{'invisible':[('state','not in',(False, 'draft'))]}"
+                                class="oe_highlight"
+                                confirm="You will activate the BoM. If you haven't set a route yet, then you won't be able to do it after this. Are you sure you want to proceed?"/>
+                        <button name="button_new_version" type="object" string="新版本"
+                                attrs="{'invisible':[('state','==','historical')]}"
+                                class="oe_highlight"
+                                confirm="You are going to create a new version of this BoM. Are you sure?"/>
+                        <button name="button_historical" type="object" string="历史"
+                                attrs="{'invisible':[('state','!=','active')]}"
+                                class="oe_highlight"
+                                confirm="You are going to historize an BoM. Doing, not be able to unlock it unless you make a copy. Are you sure you want to proceed?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active,historical" />
+                    </header>
+                </sheet>
+                <field name="name" position="after">
+                    <field name="fee"/>
+                </field>
+                <field name="type" position="after">
+                    <field name="version"/>
+                    <field name="active" readonly="1"/>
+                    <field name="historical_date" attrs="{'invisible': [('state','!=','historical')]}"/>
+                </field>
+                <!--
+                <field name="line_child_ids" position="inside">
+                    <page string="Versions">
+                        <field name="old_versions" />
+                    </page>
+                </notebook>
+                -->
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="wh_bom_version_search_view">
+            <field name="name">wh.bom.version.search</field>
+            <field name="model">wh.bom</field>
+            <field name="inherit_id" ref="warehouse.wh_bom_search"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="active" />
+                    <field name="state" />
+                </field>
+            </field>
+        </record>
+
+    </data>
+</openerp>

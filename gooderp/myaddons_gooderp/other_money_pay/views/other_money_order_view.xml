@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+		 <!-- 继承其他收支单 form 视图 -->
+        <record id="other_money_order_form_inherit" model="ir.ui.view">
+            <field name="name">other.money.order.form.inherit</field>
+            <field name="model">other.money.order</field>
+            <field name="inherit_id" ref="money.other_money_order_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='partner_id']" position="replace">
+						<field name="partner_id"
+								options="{'no_open': True, 'no_create': True}"
+								groups="other_money_pay.other_money_pay_groups"/>
+				</xpath>
+				<xpath expr="//field[@name='partner_id']" position='after'>
+                    <field name="invoice_id" readonly='1' groups='base.group_no_one'/>
+					<field name='user_id'
+                                       options="{'no_open': True, 'no_create': True}"/>
+					<field name="ref" attrs="{'readonly': [('state','!=','draft')]}"/>
+                </xpath>
+				<xpath expr="//field[@name='date']" position="after">
+					<field name='date_due' required='1' attrs="{'readonly': [('state','!=','draft')]}"/>
+					<field name="pay_state" readonly="1" groups='base.group_no_one'
+							attrs="{'invisible': [('type', '!=', 'other_papy')]}"/>
+					<field name="get_state" readonly="1" groups='base.grou_no_one'
+							attrs="{'invisible': [('type', '!=', 'other_get')]}"/>
+					<field name="currency_id" readonly="1"
+									 groups='finance.group_multi_currency'/>
+				</xpath>
+				<xpath expr="//field[@name='bank_id']" position="before">
+					<field name="discount_amount" groups='sell.sell_discount_groups'/>
+					<field name='receipt' attrs="{'invisible': [('type', '!=', 'other_get')]}"/>
+					<field name='payment' attrs="{'invisible': [('type', '!=', 'other_pay')]}"/>
+				</xpath>
+			</field>
+		</record>
+		<!--继承其他收支单的tree视图-->
+		<record id="other_money_order_tree_inherit" model="ir.ui.view">
+			<field name="name">other.money.order.tree.inherit</field>
+            <field name="model">other.money.order</field>
+            <field name="inherit_id" ref="money.other_money_order_tree"/>
+            <field name="arch" type="xml">
+					<xpath expr="//field[@name='_approve_state']" position='after'>
+						<field name="get_state"/>
+						<field name="pay_state"/>
+					</xpath>
+			</field>
+		</record>
+		 <!--继承其他收支单的明细行-->
+		<record id="other_money_order_line_inherit" model="ir.ui.view">
+			<field name="name">other.money.order.line.inherit</field>
+			<field name="model">other.money.order</field>
+			<field name="inherit_id" ref="money.other_money_order_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='line_ids']/tree/field[@name='amount']" position="before">
+					<field name="quantity"/>
+					<field name="price_taxed"/>
+					<field name="discount_rate"/>
+					<field name="discount_amount"/>
+				</xpath>
+			</field>
+		</record>
+    </data>
+</openerp>

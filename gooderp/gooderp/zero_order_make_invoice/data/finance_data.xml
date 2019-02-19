@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- 其他收入单 贷方科目：材料采购-->
+        <record id="categ_other_get" model="core.category">
+            <field name="name">其他收入单</field>
+            <field name="type">income</field>
+            <field name="account_id" ref="finance.small_business_chart1401"/>
+        </record>
+
+        <!-- 其他支出单 贷方科目：材料采购-->
+        <record id="categ_other_pay" model="core.category">
+            <field name="name">其他支出单</field>
+            <field name="type">expense</field>
+            <field name="account_id" ref="finance.small_business_chart1401"/>
+        </record>
+    </data>
+</openerp>

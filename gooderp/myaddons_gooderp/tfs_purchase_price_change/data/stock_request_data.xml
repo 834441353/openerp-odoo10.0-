@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!-- 补货申请序列号 -->
+        <record id="seq_stock_request" model="ir.sequence">
+            <field name="name">tfs purchase change</field>
+            <field name="code">tfs.purchase.price.change</field>
+            <field name="prefix">cp</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_tfs_purchase_price_change,access_tfs_purchase_price_change,model_tfs_purchase_price_change,buy.buy_groups,1,1,1,0
+access_tfs_purchase_price_change_line,access_tfs_purchase_price_change_line,model_tfs_purchase_price_change_line,buy.buy_groups,1,1,1,1

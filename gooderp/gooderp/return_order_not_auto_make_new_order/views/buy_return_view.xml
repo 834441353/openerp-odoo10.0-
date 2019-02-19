@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model="ir.ui.view" id="buy_return_make_generate_delivery">
+        <field name="name">buy.return.form.inherit</field>
+        <field name="model">buy.receipt</field>
+        <field name="inherit_id" ref="buy.buy_return_form"/>
+        <field name="arch" type="xml">
+            <button name="buy_receipt_done" position="after">
+                <button name="buy_return_to_return" type='object' states="done" string='生成收货单' groups="sell.group_sell" class="oe_highlight"/>
+            </button>
+        </field>
+    </record>
+</odoo>

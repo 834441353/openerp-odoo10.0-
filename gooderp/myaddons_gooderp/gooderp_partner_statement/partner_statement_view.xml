@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem id="menu_partner_statement" name="账单" parent="money.menu_money_root" sequence="2"/>
+        <record id="partner_statement_form" model="ir.ui.view">
+            <field name="name">partner.statement.form</field>
+            <field name="model">partner.statement</field>
+            <field name="arch" type="xml">
+                <form string="客户账单">
+                    <header>
+                        <button name="btn_doing" string="重新对账" type="object" states="done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,doing,done" statusbar_colors='{"exception":"red","cancel":"red"}'/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id" readonly="True"/>
+                                <field name="c_balance" readonly="True"/>
+                                <field name="s_balance" readonly="True"/>
+                                <field name="image" widget="image" attrs="{'readonly':[('state','=','done')]}"/>
+                                <field name="date" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="done_date" readonly="True"/>
+                                <field name="new_c_balance" attrs="{'readonly':[('state','=','done')]}"/>
+                                <field name="new_s_balance" attrs="{'readonly':[('state','=','done')]}"/>
+                                <field name="file_name" invisible="True"/>
+                                <field name="file" fieldname="file_name" attrs="{'readonly':[('state','=','done')]}"/>
+                            </group>
+                        </group>
+                        <label for="note"/>
+                        <field name="note"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="partner_statement_tree" model="ir.ui.view">
+            <field name="name">partner.statement.tree</field>
+            <field name="model">partner.statement</field>
+            <field name="arch" type="xml">
+                <tree string="客户账单" colors="red:state!='done'">
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="done_date"/>
+                    <field name="c_balance"/>
+                    <field name="new_c_balance"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="partner_statement_search" model="ir.ui.view">
+            <field name="name">partner.statement.select</field>
+            <field name="model">partner.statement</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="partner_id"/>
+                    <field name="state"/>
+               </search>
+            </field>
+        </record>
+
+        <record id="action_partner_statement_customer" model="ir.actions.act_window">
+            <field name="name">客户账单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_customer','=',True)]</field>
+            <field name="search_view_id" ref="partner_statement_search"/>
+        </record>
+
+        <menuitem name="客户账单" id="menu_partner_statement_customer" parent="menu_partner_statement"
+                  action="action_partner_statement_customer" sequence="1"/>
+
+        <record id="action_partner_statement_supplier" model="ir.actions.act_window">
+            <field name="name">供应商账单</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">partner.statement</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_supplier','=',True)]</field>
+            <field name="search_view_id" ref="partner_statement_search"/>
+        </record>
+
+        <menuitem name="供应商账单" id="menu_partner_statement_supplier" parent="menu_partner_statement"
+                  action="action_partner_statement_supplier" sequence="1"/>
+
+    </data>
+    <data noupdate="1">
+        <!--自动计算预设数据-->
+        <record model="ir.cron" id="ir_cron_partner_statement">
+            <field name="name">自动生成财务对账单</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">months</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model">partner.statement</field>
+            <field name="function">auto_get_statement</field>
+            <field name="args" eval="False" />
+        </record>
+    </data>
+</openerp>

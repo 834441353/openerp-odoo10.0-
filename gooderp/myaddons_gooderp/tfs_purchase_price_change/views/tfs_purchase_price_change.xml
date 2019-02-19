@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <!-- Applicants -->
+        <record model="ir.ui.view" id="tree_tfs_purchase_price_change">
+            <field name="name">tfs.purchase.price.change.tree</field>
+            <field name="model">tfs.purchase.price.change</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="receipt_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="form_tfs_purchase_price_change">
+            <field name="name">tfs.purchase.price.change.form</field>
+            <field name="model">tfs.purchase.price.change</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="确认修改" name="btn_done" type="object"
+                                class="oe_highlight" states="draft"/>
+                        <button string="反修改" name="btn_draft" type="object"
+                                class="oe_highlight" states="done" groups="base.group_erp_manager"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
+                    <sheet>
+                        <div>
+                            <h1>
+                                <field name="name" readonly="True"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="receipt_id" attrs="{'readonly':[('state','=','done')],'required':True}"  domain="[('is_return','=',False)]"/>
+                                <field name="partner_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="date" required="True"/>
+                                <field name="note" readonly="True"/>
+                            </group>
+                        </group>
+                        <separator string="入库明细"/>
+                        <field name="order_lines" attrs="{'readonly':[('state','=','done')]}">
+                            <tree create="false" editable="top">
+                                <field name="line_id" invisible="True"/>
+                                <field name="goods_id" readonly="True"/>
+                                <field name="lot_id" readonly="True"/>
+                                <field name="goods_qty" readonly="True"/>
+                                <field name="uom_id" readonly="True"/>
+                                <field name="price" readonly="True"/>
+                                <field name="new_price"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="action_tfs_purchase_price_change">
+            <field name="name">采购调价单</field>
+            <field name="res_model">tfs.purchase.price.change</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_tfs_purchase_price_change" name="采购调价单" parent="buy.menu_buy_manage" sequence="5"
+                  groups='buy.buy_groups' action="action_tfs_purchase_price_change"/>
+
+    </data>
+</odoo>

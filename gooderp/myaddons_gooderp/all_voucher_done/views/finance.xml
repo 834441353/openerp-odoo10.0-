@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_form_voucher_done" model="ir.ui.view">
+            <field name="name">voucher.done.form</field>
+            <field name="model">voucher.done</field>
+            <field name="arch" type="xml">
+                <form string="批量过账凭证">
+                    <group>
+                        <separator string="你确定要批量审核这些凭证吗?"/>
+                        <label string="只能批量审核草稿状态的凭证!" colspan="4"/>
+                    </group>
+
+                    <footer>
+                        <button name="voucher_done" string="批量审核" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_qdodoo_account_move"
+                    multi="True"
+                    key2="client_action_multi" name="批量审核"
+                    res_model="voucher.done" src_model="voucher"
+                    view_mode="form" target="new"/>
+    </data>
+</openerp>

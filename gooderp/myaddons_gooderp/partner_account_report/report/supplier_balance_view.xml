@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!--供应商应付tree-->
+		<record id="report_supplier_balance_tree" model="ir.ui.view">
+            <field name="name">report.supplier.balance.tree</field>
+            <field name="model">report.supplier.balance</field>
+            <field name="arch" type="xml">
+                <tree string="供应商应付账款汇总表" create="false">
+                	<field name="code"/>
+                    <field name="name"/>
+                    <field name="payable"/>
+                    <field name="payable_begain"/>
+                    <field name="amount"/>
+                    <field name="pay_amount"/>
+                    <field name="discount_money"/>
+                    <field name="balance_amount"/>
+                </tree>
+            </field>
+        </record>
+	</data>
+</openerp>
+	

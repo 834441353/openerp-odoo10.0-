@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id='report_customer_balance_tree' model='ir.ui.view'>
+            <field name='name'>report.customer.balance.tree</field>
+            <field name='model'>report.customer.balance</field>
+            <field name='arch' type='xml'>
+                <tree string='应收账款汇总表表'>
+                    <field name='code'/>
+					<field name='partner_id'/>
+                    <field name='receivable'/>
+
+                    <field name='goods_qty_begain' sum="1" />
+                    <field name='goods_qty_in' sum="1" />
+                    <field name='goods_qty_out' sum="1"/>
+                    <field name='goods_qty_end' sum="1" />
+
+                    <field name='uom' />
+
+					<field name='cost_begain' groups='goods.view_cost_groups'/>
+                    <field name='cost_in' groups='goods.view_cost_groups'/>
+                    <field name='cost_out' groups='goods.view_cost_groups'/>
+                    <field name='cost_end' groups='goods.view_cost_groups'/>
+                    <button name="find_source_move_line" type="object" string="查看库存调拨明细" icon="fa-search" class="oe_highlight"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='report_customer_balance_search' model='ir.ui.view'>
+            <field name='name'>report.customer.balance.search</field>
+            <field name='model'>report.customer.balance</field>
+            <field name='arch' type='xml'>
+                <search string='商品收发明细表' >
+                    <field name='goods' string='商品' filter_domain="[('goods', 'ilike', self)]" />
+                    <field name='warehouse' string='仓库' filter_domain="[('warehouse', 'ilike', self)]" />
+                    <field name='uom' string='单位' filter_domain="[('uom', 'ilike', self)]" />
+
+                    <group expand="0" string="Group By">
+                        <filter string="商品" context="{'group_by':'goods'}"/>
+                        <filter string="属性" context="{'group_by': 'attribute'}" groups='goods.multi_attrs_groups'/>
+                        <filter string="仓库" context="{'group_by': 'warehouse'}" groups='warehouse.multi_warehouse_groups'/>
+                        <filter string="单位" context="{'group_by': 'uom'}"/>
+                    </group>
+                </search>
+            </field>
+        </record> 
+<!--
+        <record id='report_customer_balance_graph' model='ir.ui.view'>
+            <field name='name'>report.customer.balance.graph</field>
+            <field name='model'>report.customer.balance</field>
+            <field name='arch' type='xml'>
+                <pivot string="商品收发明细表">
+                    <field name='goods' type='row' />
+                    <field name='warehouse' type='col' groups='warehouse.multi_warehouse_groups' />
+                    <field name='goods_qty_begain' type='measure' />
+                    <field name='cost_begain' type='measure' groups='goods.view_cost_groups'/>
+                </pivot>
+            </field>
+        </record>
+-->
+    </data>
+</openerp>

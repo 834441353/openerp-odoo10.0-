@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+         <!-- 继承组装单模型 -->
+        <record id="wh_assembly_form_inherit" model="ir.ui.view">
+             <field name="name">wh.assembly.form.inherit</field>
+            <field name="model">wh.assembly</field>
+            <field name="inherit_id" ref="warehouse.wh_assembly_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='cancel_approved_order']" position="before">
+                    <button name='cancel_approved_feeding' type='object' string='撤销发料' states='feeding' groups="base.group_erp_manager"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

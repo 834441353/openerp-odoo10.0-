@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!--  服务单编号 -->
+        <record id="seq_cost_order" model="ir.sequence">
+            <field name="name">服务单</field>
+            <field name="code">cost.order</field>
+            <field name="prefix">COST%(y)s%(month)s%(day)s</field>
+            <field name="padding">2</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+    </data>
+</openerp>

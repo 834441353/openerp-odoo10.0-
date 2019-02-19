@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="gooderp_db_message_tree" model="ir.ui.view">
+            <field name="name">gooderp.db.message.tree</field>
+            <field name="model">gooderp.db.message</field>
+            <field name="arch" type="xml">
+                <tree string="数据库信息" editable="top">
+                    <field name="name"/>
+                    <field name="db_name"/>
+                    <field name="url"/>
+                    <field name="port"/>
+                    <field name="user_name"/>
+                    <field name="pwd"/>
+                    <field name="date" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--<record id="gooderp_db_message_search" model="ir.ui.view">-->
+            <!--<field name="name">money.order.search</field>-->
+            <!--<field name="model">money.order</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<search string="收/付款单">-->
+                    <!--<field name="name"/>-->
+                    <!--<field name="db_name"/>-->
+                <!--</search>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <record id="action_gooderp_db_message" model="ir.actions.act_window">
+            <field name="name">账套列表</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="res_model">gooderp.db.message</field>
+        </record>
+
+        <menuitem name="账套列表" id="menu_gooderp_db_message" parent="base.menu_ir_property"
+                  action="action_gooderp_db_message" sequence="9"/>
+    </data>
+</openerp>

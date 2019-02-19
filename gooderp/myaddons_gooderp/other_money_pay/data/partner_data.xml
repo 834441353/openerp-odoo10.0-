@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <!-- 默认供应商分类 -->
+        <record id="supplier_category_1" model="core.category">
+            <field name="name">一类供应商</field>
+            <field name="account_id" ref="finance.account_ap"/>
+            <field name="type">supplier</field>
+        </record>
+        <record id="customer_category_1" model="core.category">
+            <field name="name">一类客户</field>
+            <field name="account_id" ref="finance.account_ar"/>
+            <field name="type">customer</field>
+        </record>
+    </data>
+</openerp>

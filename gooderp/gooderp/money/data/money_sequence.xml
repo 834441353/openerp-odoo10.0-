@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!--  收款单编号 -->
+        <record id="seq_receipt_order" model="ir.sequence">
+            <field name="name">收款单</field>
+            <field name="code">get.order</field>
+            <field name="prefix">GET%(y)s%(month)s%(day)s</field>
+            <field name="padding">5</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+
+        <!--  付款单编号 -->
+        <record id="seq_payment_order" model="ir.sequence">
+            <field name="name">付款单</field>
+            <field name="code">pay.order</field>
+            <field name="prefix">PAY%(y)s%(month)s%(day)s</field>
+            <field name="padding">2</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+
+        <!--  其他收入单编号 -->
+        <record id="seq_other_receipt_order" model="ir.sequence">
+            <field name="name">其他收入单</field>
+            <field name="code">other.get.order</field>
+            <field name="prefix">OTHER_GET%(y)s%(month)s%(day)s</field>
+            <field name="padding">2</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+
+        <!--  其他支出单编号 -->
+        <record id="seq_other_payment_order" model="ir.sequence">
+            <field name="name">其他支出单</field>
+            <field name="code">other.pay.order</field>
+            <field name="prefix">OTHER_PAY%(y)s%(month)s%(day)s</field>
+            <field name="padding">5</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+
+        <!--  资金转账单序列号 -->
+        <record id="seq_money_transfer_order" model="ir.sequence">
+            <field name="name">资金转账单</field>
+            <field name="code">money.transfer.order</field>
+            <field name="prefix">TR%(y)s%(month)s%(day)s</field>
+            <field name="padding">2</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+
+        <!--  核销单编号 -->
+        <record id="seq_reconcile_order" model="ir.sequence">
+            <field name="name">核销单</field>
+            <field name="code">reconcile.order</field>
+            <field name="prefix">RO%(y)s%(month)s%(day)s</field>
+            <field name="padding">2</field>
+            <field name="auto_reset">True</field>
+            <field name="reset_period">day</field>
+        </record>
+    </data>
+</openerp>

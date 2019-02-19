@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <!-- 销售汇总表 menu -->
+        <menuitem id="money_menu_sell_report" name="销售报表" parent="money.menu_money_root" sequence="2"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_summary" name="销售汇总表" action="sell.report_sell_summary_action"
+                parent="money_menu_sell_report" sequence="0"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_order_detail" name="销售明细表" action="sell.sell_order_detail_wizard_action"
+                parent="money_menu_sell_report" sequence="2"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_summary_goods" name="销售汇总表（按商品）" action="sell.sell_summary_goods_wizard_action"
+                parent="money_menu_sell_report" sequence="3"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_summary_partner" name="销售汇总表（按客户）" action="sell.sell_summary_partner_wizard_action"
+                parent="money_menu_sell_report" sequence="4"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_summary_staff" name="销售汇总表（按销售人员）" action="sell.sell_summary_staff_wizard_action"
+                parent="money_menu_sell_report" sequence="5"
+                groups='money.group_money_manager'/>
+        <menuitem id="money_menu_sell_top_ten" name="销量前十商品" action="sell.sell_top_ten_wizard_action"
+                parent="money_menu_sell_report" sequence="7"
+                groups='money.group_money_manager'/>
+    </data>
+</openerp>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id='report_customer_balance_tree' model='ir.ui.view'>
+            <field name='name'>report.customer.balance.tree</field>
+            <field name='model'>report.customer.balance</field>
+            <field name="arch" type="xml">
+                <tree string="客户应收账款汇总表" create="false">
+                	<field name="code"/>
+                    <field name="name"/>
+                    <field name="receivable"/>
+                    <field name="receivable_begain"/>
+                    <field name="amount"/>
+                    <field name="get_amount"/>
+                    <field name="discount_money"/>
+                    <field name="balance_amount"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='report_customer_balance_search' model='ir.ui.view'>
+            <field name='name'>report.customer.balance.search</field>
+            <field name='model'>report.customer.balance</field>
+            <field name='arch' type='xml'>
+                <search string='客户应收账款汇总表' >
+                    <field name='partner_id' string='业务伙伴名称' filter_domain="[('partner_id', 'ilike', self)]" />
+                </search>
+            </field>
+        </record>
+
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id='report_stock_transceive_tree_inherited_company' model='ir.ui.view'>
+            <field name='name'>report.stock.transceive.tree</field>
+            <field name='model'>report.stock.transceive</field>
+            <field name='inherit_id' ref='warehouse.report_stock_transceive_tree'/>
+            <field name='arch' type='xml'>
+                <field name='warehouse' position='before'>
+                    <field name='company'/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
